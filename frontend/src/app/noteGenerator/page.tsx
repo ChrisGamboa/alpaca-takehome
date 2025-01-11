@@ -1,4 +1,4 @@
-import NoteGeneratorForm from './NoteGeneratorForm'
+import NoteGeneratorForm from '../../components/NoteGeneratorForm'
 
 export default function NoteGeneratorPage() {
   return (
