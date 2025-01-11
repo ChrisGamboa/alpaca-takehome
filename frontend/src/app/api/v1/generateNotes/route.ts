@@ -1,6 +1,7 @@
 // pages/api/v1/generateNotes/route.ts
 
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next';
+import { responseCookiesToRequestCookies } from '../../../../../node_modules/next/dist/server/web/spec-extension/adapters/request-cookies';
 
 interface FormData {
   date: string;
@@ -20,32 +21,28 @@ interface NotesResponse {
   Notes: string;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === 'POST') {
-    const formData: FormData = req.body;
-
+export async function POST(request: Request) {
     try {
-      const response = await fetch('http://127.0.0.1:8000/submit', {
+      const formData = await request.json()
+  
+      const response = await fetch('http://127.0.0.1:8000/generateNotes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });
-
+      })
+  
       if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`)
       }
-
-      const data: NotesResponse = await response.json();
-      res.status(200).json(data);
+  
+      const data = await response.json()
+      return response.json(data)
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+        console.error(error);
+        let errResponse = new Response();
+        return errResponse;;
     }
-  } else {
-    res.status(405).json({ message: 'Method Not Allowed' });
   }
-}
+  
