@@ -37,6 +37,7 @@ def create_ai_prompt(form_data: FormData):
         Here's a list of observations I made during our session on {form_data.date}:
         {short_notes}
         """
+    return ai_prompt
 
 
 @app.post("/generateNotes")
@@ -59,7 +60,7 @@ async def generate_notes(form_data: FormData):
         )
 
         generated_notes = response.choices[0].message
-
+        print(response)
         return {"notes": generated_notes}
 
     except Exception as e:
