@@ -8,6 +8,13 @@ The core functionality of creating AI generated notes does not work. I was unfam
 ### [/note-generator](localhost:3000/note-generator)
 ### [/all-notess](localhost:3000/all-notes)
 
+
+## Sources
+ - A lot of ChatGPT for backend. Super unfamiliar with FastAPI so I used ChatGPT to generate most of it.
+   - Spent probably an 1 - 1.5 hours trying to get my Python environment working properly 💀 I'm a Node guy
+ - Some ChatGPT for the frontend as well. Got tripped up with the new NextJS AppRouter so had to do some on the fly learning.
+ - OpenAI documentation
+ - Google for a list of types of therapy
 ---
 
 ## Features
